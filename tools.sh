@@ -4,10 +4,16 @@
 
 tools = (
 	"binwalk"
+    "binutils"
 	"git"
 	"python3"
 	"python3-pip"
 	"gdb"
+    "gdc"
+    "ruby"
+    "ruby-dev"
+    "bundler"
+    "build-essential"
 )
 
 # check for sudo
@@ -80,9 +86,6 @@ gitHub_tools() {
 	# binary ninja
 	# add more here
 
-	# binutils
-	# add more here
-
 	# boomerang
 	# add more here
 
@@ -144,7 +147,63 @@ gitHub_tools() {
 
 	# Plasma
 	# add more
+    
+    # pwndbg
+    git clone https://github.com/pwndbg/pwndbg
+    cd pwndbg
+    ./setup.sh
+    cd ..
 
+    # radare2
+    git clone https://github.com/radareorg/radare2
+    radare2/sys/install.sh
+
+    # triton
+    pip install triton
+
+    # uncompyle
+    git clone https://github.com/gstarnberger/uncompyle.git
+    cd uncompyle
+    ./setup.py install
+    cd ..
+
+    # windbg
+    # not using windows, skipping
+    
+    # xocopy
+    # weird, adding later
+    
+    # z3
+    git clone https://github.com/Z3Prover/z3
+    python scripts/mk_make.py
+    cd build
+    make
+    make install
+    cd ..
+
+    # detox
+    git clone https://github.com/svent/jsdetox.git
+    cd jsdetox
+    bundle install
+    ./jsdetox
+    cd ..
+    
+    # revelo
+    # requires manual installation :(
+
+    # RABCDAsm
+    git clone git://github.com/CyberShadow/RABCDAsm.git
+    cd RABCDAsm
+    gdmd -run build_rabcdasm.d
+    
+    # Swftools
+    # requires manual installation :(
+
+    # Xxxswf
+    git clone https://bitbucket.org/Alexander_Hanel/xxxswf.git
+    cd xxxswf
+    python setup.py
+    cd ..
 	
 }
 
