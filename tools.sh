@@ -2,7 +2,7 @@
 
 # list of tools
 
-tools = (
+tools=(
 	"binwalk"
     "binutils"
 	"git"
@@ -31,6 +31,7 @@ install_debian() {
 	for tool in "${tools[@]}"; do
 		echo "Installing $tool ..."
 		apt install -y "$tool"
+        clear
 	done
 }
 
@@ -41,18 +42,21 @@ gitHub_tools() {
 	mkdir GitHubTools
 	cd GitHubTools
 
-	echo "Downloading Reverse engineering and Binary exploitatin tools ..."
+	echo "Downloading Reverse engineering and Binary exploitation tools ..."
 	mkdir RevEng
 	cd RevEng
 	
 	# libformatstr
 	git clone https://github.com/hellman/libformatstr
+    cd libformatstr
+    pip install . --break-system-packages
+    cd ..
 
 	# pwntools
 	sudo apt-get update
 	sudo apt-get install -y python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential
-	python3 -m pip install --upgrade pip
-	python3 -m pip install --upgrade pwntools
+	python3 -m pip install --upgrade pip --break-system-packages
+	python3 -m pip install --upgrade pwntools --break-system-packages
 
 	# qira
 	git clone https://github.com/geohot/qira.git
@@ -62,13 +66,13 @@ gitHub_tools() {
 
 	# ROPgadget
 	apt install python3-pip
-	sudo -H python3 -m pip install ROPgadget
+	sudo -H python3 -m pip install ROPgadget --break-system-packages
 
 	# androguard
-	pip install androguard
+	pip install androguard --break-system-packages
 
 	# angr
-	python -m pip install angr
+	python -m pip install angr --break-system-packages
 
 	# apk2gold
 	git clone https://github.com/lxdvs/apk2gold
@@ -99,8 +103,8 @@ gitHub_tools() {
 	# work in progress, so skipping
 
 	# frida
-	pip install frida-tools
-	pip install frida
+	pip install frida-tools --break-system-packages
+	pip install frida --break-system-packages
 	npm install frida
 
 	# GEF
@@ -128,7 +132,7 @@ gitHub_tools() {
 	cd ..
 
 	# objection
-	pip3 install objection
+	pip3 install objection --break-system-packages
 
 	# PEDA
 	# add more
@@ -159,7 +163,7 @@ gitHub_tools() {
     radare2/sys/install.sh
 
     # triton
-    pip install triton
+    pip install triton --break-system-packages
 
     # uncompyle
     git clone https://github.com/gstarnberger/uncompyle.git
@@ -235,4 +239,3 @@ install_debian
 other_tools
 
 gitHub_tools
-
